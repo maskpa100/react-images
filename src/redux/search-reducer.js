@@ -1,8 +1,9 @@
-
+import {searchAPI} from "../api/api";
 const ORIENTATIONS_STATE = 'ORIENTATIONS_STATE';
 const ORIENTATIONS_VALUE = 'ORIENTATIONS_VALUE';
 const OPTION_STATE = 'OPTION_STATE';
 const OPTION_VALUE = 'OPTION_VALUE';
+const SET_IMAGES = 'SET_IMAGES';
 
 let initialState = {
 
@@ -10,10 +11,7 @@ let initialState = {
     orientationsValue: "any",
     optionState : false,
     optionValue : "any",
-    images: [
-        { id: "1", extensions: "jpg", login: "maskpa100", keywords: "природа", img_height: "675", img_width: "1080", date: "1681920838" },
-        { id: "2", extensions: "jpg", login: "maskpa100", keywords: "кот", img_height: "500", img_width: "1000", date: "1681920864" }
-    ]
+    images: [ ]
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -29,6 +27,9 @@ const searchReducer = (state = initialState, action) => {
                 orientationsValue: action.body,
                 orientationsState: false
             };
+        case SET_IMAGES: {
+            return { ...state, images: action.images }
+        }
         case OPTION_STATE:         
             return {
                 ...state,
@@ -49,5 +50,19 @@ export const funOrientationsState = () => ({type: ORIENTATIONS_STATE})
 export const funOrientationsValue = (body) => ({type: ORIENTATIONS_VALUE, body: body})
 export const funOptionState = () => ({type: OPTION_STATE})
 export const funOptionValue = (body) => ({type: OPTION_VALUE, body: body})
+export const setImages = (images) =>  ({type: SET_IMAGES ,images})
+ 
+
+export const getImages = (page,count) => {
+    return (dispatch) => {
+        searchAPI.getImages(page,count)
+        .then(data => {
+            dispatch(setImages(data.images));
+        });
+    }
+}
+
+
+
 
 export default searchReducer;

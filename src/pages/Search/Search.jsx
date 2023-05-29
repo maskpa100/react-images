@@ -1,8 +1,9 @@
+import { useLayoutEffect } from 'react';
 import s from './Search.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from 'axios';
 
 const Search = (props) => {
-
 
 let state = props.searchPage;
 let orientationsValue = state.orientationsValue;
@@ -60,47 +61,17 @@ const IconCheck = <FontAwesomeIcon className={s.iconCheck} icon="fa-solid fa-che
             <div className={s.search_content}>
                 <div className={s.search_container}>
                     <ul className={s.search_image_gallery}>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/77.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/78.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/79.gif" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/80.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/81.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/82.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/83.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/84.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/86.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/87.jpeg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/88.jpg" alt=""/>
-                        </li>
-                        <li>
-                            <img src="http://maskpa.ru/img/small/89.jpg" alt=""/>
-                        </li>
+			            {props.searchPage.images.map(p => {
+			                return  <li>
+			                            <img src={p.url} alt=""/>
+			                        </li>
+			            })}
                     </ul>
                 </div>
             </div>
 
         </div>
+
 
     );
 }
