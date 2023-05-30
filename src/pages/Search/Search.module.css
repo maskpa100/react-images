@@ -117,3 +117,6 @@
     vertical-align: middle;
     border-radius: 5px;
 }
+.search_container .count{
+    margin: -32px 0px 27px 15px;
+}
