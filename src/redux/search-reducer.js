@@ -59,7 +59,7 @@ export const funOrientationsValue = (body) => ({type: ORIENTATIONS_VALUE, body: 
 export const funOptionState = () => ({type: OPTION_STATE})
 export const funOptionValue = (body) => ({type: OPTION_VALUE, body: body})
 export const setImages = (data) =>  ({type: SET_IMAGES ,data})
-export const getWords = (words) => ({type: GET_WORDS ,words: words})
+export const getWords = (words) => ({type: GET_WORDS ,words})
  
 
 export const getImages = (page,count,words,format,orientations) => {

@@ -1,11 +1,11 @@
-import {me, login} from "../../redux/auth-reducer";
-import Login from "./Login";
+import {me, login,  getAuth} from "./redux/auth-reducer";
+import App from "./App";
 import React from 'react';
 import {connect} from "react-redux";
 
 
 
-class LoginContainer extends React.Component {
+class AppContainer extends React.Component {
 
     componentDidUpdate() {
       //this.props.me();
@@ -14,9 +14,10 @@ class LoginContainer extends React.Component {
     
     render() {
         return <>
-            <Login loginPage={this.props.loginPage}
+            <App authPage={this.props.authPage}
                     login={this.props.login}
                     me={this.props.me}
+                    getAuth={this.props.getAuth}
 
              />
         </>
@@ -24,9 +25,9 @@ class LoginContainer extends React.Component {
 }
 let mapStateToProps = (state) => {
     return {
-        loginPage: state.loginPage
+        authPage: state.authPage
     }
 }
 
 
-export default connect(mapStateToProps, {me, login})(LoginContainer);
+export default connect(mapStateToProps, {me, login,  getAuth})(AppContainer);

@@ -7,6 +7,7 @@ const noAuthAPI = axios.create({
 });
 const AuthAPI = axios.create({
     withCredentials: true,
+    crossDomain: true,
     baseURL: 'http://maskpa.ru/api/'
 });
 
@@ -20,15 +21,36 @@ export const searchAPI = {
 }
 
 export const authAPI = {
-    me() {
-        return AuthAPI.post('login.php', {
-              "email" : "vasya@coder.com",
-              "password" : "888"
-            })
+    login(values) {
+        return AuthAPI.post('login.php', values)
             .then(response => {
                 return response.data;
+
+            });
+    },
+    me(jwt) {
+        return AuthAPI.post('validate_token.ph', {
+              "jwt" : jwt
+            })
+            .then(response => {
+                
+                return response.data;
+                
+                
+            });
+    },
+    getAuth(jwt) {
+        return AuthAPI.post('validate_token.php', {
+              "jwt" : jwt
+            })
+            .then(response => {
+                
+                return response.data;
+                
+                
             });
     }
 }
+
 
 
